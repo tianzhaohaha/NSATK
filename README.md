@@ -1,5 +1,5 @@
 NSATK
-###GCN模型
+### GCN模型
 这里GCN模型我使用的是两层模型，为了便于修改，我使用的是原论文的GCN模型。
 GCN模型更新公式：
 $$H^{(l+1)}=\sigma(\tilde{D^{-1/2}}A\tilde{D^{-1/2}}H^{(l)}W^{(l)})$$
@@ -14,10 +14,10 @@ $D_i = \sum_jA_{ij}$
 
 一层hidden layer的GCN公式：   
 
-$$Z=f_{\theta}(A,X)=softmax(\hat{A}\sigma(\hat{A}XW^{(1)})W^{(2)})$$
+$$ Z=f_{\theta}(A,X)=softmax(\hat{A}\sigma(\hat{A}XW^{(1)})W^{(2)})$$
 
-###ATTACK MODEL
-####1.GMA on node set(graph modify attack)
+### ATTACK MODEL
+#### 1.GMA on node set(graph modify attack)
 首先指定一组target nodes，对于direct attack受攻击节点就是target nodes：$V$，对于influential attack则是target nodes的邻居节点作为：$V$
 
 对于GMA形式的攻击：
@@ -32,7 +32,7 @@ $$Z = f_{\theta}(A,X)\ \ and \ \ Z* = f_{\theta}(A^{'},X^{'}) $$
 这里，$Z_{v,c}$代表GCN模型，对于节点v在标签c上的预测值，attack model的目的是最大化上述括号内的公式。
 
 
-####2.弱化扰动联系
+#### 2.弱化扰动联系
 **概述**：在扰动后的图训练一个改进后的deepwalk模型，按某种方式剔除一些扰动，再使用deepwalk预测余下的出现概率。变动较大的扰动剔除。
 
 这里我使用的是以skip-gram为内核的deepwalk算法，deepwalk算法并不能直接用于弱化扰动联系，其存在一些问题：
